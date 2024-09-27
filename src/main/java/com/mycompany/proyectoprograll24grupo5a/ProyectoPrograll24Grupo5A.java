@@ -6,6 +6,8 @@ package com.mycompany.proyectoprograll24grupo5a;
 
 import java.util.Scanner;
 
+// ingreso de usuuario y contraseña
+
 public class ProyectoPrograll24Grupo5A {
     private String usuario;
     private String contraseña;
