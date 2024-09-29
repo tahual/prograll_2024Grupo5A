@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="com.mycompany_ProyectoPrograll24Grupo5A_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://LAPTOP-JPSJM2L6:1433;databaseName=Distribuidora Agricola;sslProtocol=TLSv1.2;trustServerCertificate=true"/>
+      <property name="javax.persistence.jdbc.user" value="sa"/>
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+      <property name="javax.persistence.jdbc.password" value="41705232"/>
+      <property name="javax.persistence.schema-generation.database.action" value="update"/>
+    </properties>
     <class>gt.edu.umg.gt.Productos</class>
     <class>gt.edu.umg.gt.Roles</class>
     <class>gt.edu.umg.gt.Usuarios</class>
@@ -10,13 +19,8 @@
     <class>gt.edu.umg.gt.DetalleCompra</class>
     <class>gt.edu.umg.gt.Compras</class>
     <class>gt.edu.umg.gt.Inventario</class>
-    <class>gt.edu.umg.gt.Facturas</class>
     <class>gt.edu.umg.gt.DetalleVenta</class>
-    <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://LAPTOP-JPSJM2L6:1433;databaseName=Distribuidora Agricola;sslProtocol=TLSv1.2;trustServerCertificate=true"/>
-      <property name="javax.persistence.jdbc.user" value="sa"/>
-      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
-      <property name="javax.persistence.jdbc.password" value="41705232"/>
-    </properties>
+    <class>gt.edu.umg.gt.Facturas</class>
+     <class>gt.edu.umg.gt.Inventario</class>
   </persistence-unit>
 </persistence>

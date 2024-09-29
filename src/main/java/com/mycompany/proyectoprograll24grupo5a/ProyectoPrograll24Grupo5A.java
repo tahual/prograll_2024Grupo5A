@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 public class ProyectoPrograll24Grupo5A {
     private String usuario;
-    private String contraseña;
+    private String contraseña; 
 
     public void mostrarMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println(" Menú de Inicio de Sesión");
+        System.out.println("Menú de Inicio de Sesión");
         
         System.out.print("Ingrese su usuario: ");
         usuario = scanner.nextLine();
@@ -33,12 +33,18 @@ public class ProyectoPrograll24Grupo5A {
 
     public static void main(String[] args) {
         ProyectoPrograll24Grupo5A menu = new ProyectoPrograll24Grupo5A();
-        menu.mostrarMenu();
-        
-        String usuario = menu.getUsuario();
-        String contraseña = menu.getContraseña();
-        
         login milogin = new login();
-        milogin.acceder(usuario, contraseña);
+        boolean sesionIniciada = false;
+
+        while (!sesionIniciada) {
+            menu.mostrarMenu();
+            String usuario = menu.getUsuario();
+            String contraseña = menu.getContraseña();
+            sesionIniciada = milogin.acceder(usuario, contraseña);
+
+            if (!sesionIniciada) {
+                System.out.println("Credenciales incorrectas. Intente de nuevo.");
+            }
+        }
     }
 }
