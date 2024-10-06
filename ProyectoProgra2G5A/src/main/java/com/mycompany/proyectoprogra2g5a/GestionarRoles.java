@@ -30,7 +30,7 @@ public class GestionarRoles {
             System.out.println("2. Leer Rol");
             System.out.println("3. Actualizar Rol");
             System.out.println("4. Eliminar Rol");
-            System.out.println("0. Salir");
+            System.out.println("5. Salir");
             System.out.print("Seleccione una opción: ");
             opcion = scanner.nextInt();
             scanner.nextLine();
@@ -48,7 +48,7 @@ public class GestionarRoles {
                 case 4:
                     eliminarRol(scanner);
                     break;
-                case 0:
+                case 5:
                     System.out.println("Saliendo de la gestión de roles.");
                     break;
                 default:
