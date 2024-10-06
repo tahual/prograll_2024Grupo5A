@@ -22,8 +22,8 @@ public class ProyectoProgra2G5A {
             boolean loginExitoso = false;
             long idUsuarioActual = -1;
 
-            System.out.println("\n*** Bienvenido al Sistema Distribuidora Agricola***");
-            System.out.println(" Ingrese sus credenciales para acceder al sistema");
+            System.out.println("\n*** Distribuidora Agricola***");
+            System.out.println(" Ingrese sus credenciales para inciar sesión");
 
             while (!loginExitoso) {
                 System.out.print("\nIngrese su correo electrónico: ");
@@ -40,16 +40,16 @@ public class ProyectoProgra2G5A {
                     Usuarios usuario = query.getSingleResult();
 
                     if (java.util.Arrays.equals(usuario.getContraseña(), contraseñaEncriptada)) {
-                        System.out.println("Inicio de sesión exitoso. Bienvenido, " + usuario.getNombre() + "!");
+                        System.out.println(" Bienvenido, " + usuario.getNombre() + "!");
                         idUsuarioActual = usuario.getUsuarioId();
                         loginExitoso = true;
 
                         MenuPrincipal(scanner, em, emf);
                     } else {
-                        System.out.println("Error** Credenciales incorrectas. Intente Nuevamente.");
+                        System.out.println("Error** Datos incorrectas. Intente Nuevamente.");
                     }
                 } catch (Exception e) {
-                    System.out.println("Error** Credenciales incorrectas. Intente Nuevamente.");
+                    System.out.println("Error** Datos incorrectas. Intente Nuevamente.");
                 }
             }
         } finally {
@@ -107,35 +107,42 @@ public class ProyectoProgra2G5A {
                     gestionarBitacoraAcceso.gestionarBitacoraAcceso(scanner);
                     break;
                 case 4:
-                    System.out.println("Opción Gestionar Productos seleccionada.");
-                   
+                    GestionarProductos gestionarProductos = new GestionarProductos(emf);
+                    gestionarProductos.gestionarProductos(scanner);
+
                     break;
-                     case 5:
-                    System.out.println("Opción Gestionar Productos seleccionada.");
-                   
+                case 5:
+                    GestionarInventario gestionarInventario = new GestionarInventario(emf);
+                    gestionarInventario.gestionarInventario(scanner);
+
                     break;
-                     case 6:
-                    System.out.println("Opción Gestionar Productos seleccionada.");
-                   
+                case 6:
+                    GestionarVentas gestionarVentas = new GestionarVentas(emf);
+                    gestionarVentas.gestionarVentas(scanner);
+
                     break;
-                     case 7:
-                    System.out.println("Opción Gestionar // seleccionada.");
-                   
+                case 7:
+                    GestionarDetalleVentas gestionarDetalleVentas = new GestionarDetalleVentas(emf);
+                    gestionarDetalleVentas.gestionarDetalleVentas(scanner);
+
                     break;
-                     case 8:
-                    System.out.println("Opción Gestionar // seleccionada.");
-                   
+                case 8:
+                    GestionarCompras gestionarCompras = new GestionarCompras(emf);
+                    gestionarCompras.gestionarCompras(scanner);
+
                     break;
-                     case 9:
-                    System.out.println("Opción Gestionar // seleccionada.");
-                   
+                case 9:
+                    GestionarDetalleCompra gestionarDetalleCompra = new GestionarDetalleCompra(emf);
+                    gestionarDetalleCompra.gestionarDetalleCompra(scanner);
+
                     break;
-                     case 10:
-                    System.out.println("Opción Gestionar // seleccionada.");
-                   
+                case 10:
+                    GestionarFacturas gestionarFacturas = new GestionarFacturas(emf);
+                    gestionarFacturas.gestionarFacturas(scanner);
+
                     break;
                 case 11:
-                    System.out.println("Saliendo del sistema...");
+                    System.out.println("Seseión cerrada");
                     salir = true;
                     break;
                 default:
