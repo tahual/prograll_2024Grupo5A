@@ -5,9 +5,9 @@
 package com.mycompany.proyectoprogra2g5a;
 
 import gt.edu.umg.bd.Usuarios;
+import gt.edu.umg.bd.Roles;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Scanner;
 
@@ -63,6 +63,9 @@ public class GestionarUsuarios {
         String correo = scanner.nextLine();
         System.out.print("Ingrese la contraseña: ");
         String contraseña = scanner.nextLine();
+        System.out.print("Ingrese el ID del rol: ");
+        int rolId = scanner.nextInt();
+        scanner.nextLine();
 
         byte[] contraseñaEncriptada = ProyectoProgra2G5A.encriptarContrasena(contraseña);
 
@@ -74,6 +77,16 @@ public class GestionarUsuarios {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         try {
+            Roles rol = em.find(Roles.class, rolId);
+            if (rol != null) {
+                nuevoUsuario.setRolId(rol);
+            } else {
+                System.out.println("Error: Rol no encontrado con el ID " + rolId);
+                em.getTransaction().rollback();
+                em.close();
+                return;
+            }
+
             em.persist(nuevoUsuario);
             em.getTransaction().commit();
             System.out.println("Usuario creado con éxito.");
@@ -88,9 +101,9 @@ public class GestionarUsuarios {
     private void leerUsuarios() {
         EntityManager em = emf.createEntityManager();
         try {
-            List<Usuarios> usuarios = em.createQuery("SELECT u FROM Usuarios u", Usuarios.class).getResultList();
+            List<Usuarios> usuarios = em.createNamedQuery("Usuarios.findAll", Usuarios.class).getResultList();
             for (Usuarios usuario : usuarios) {
-                System.out.println("ID: " + usuario.getUsuarioId() + ", Correo: " + usuario.getCorreo());
+                System.out.println("ID: " + usuario.getUsuarioId() + ", Nombre: " + usuario.getNombre() + ", Correo: " + usuario.getCorreo());
             }
         } finally {
             em.close();
@@ -126,7 +139,6 @@ public class GestionarUsuarios {
                     usuario.setCorreo(nuevoCorreo);
                 }
                 if (!nuevaContraseña.isEmpty()) {
-
                     byte[] nuevaContraseñaEncriptada = ProyectoProgra2G5A.encriptarContrasena(nuevaContraseña);
                     usuario.setContraseña(nuevaContraseñaEncriptada);
                 }
@@ -167,7 +179,7 @@ public class GestionarUsuarios {
             em.getTransaction().rollback();
             System.out.println("Error al eliminar el usuario: " + e.getMessage());
         } finally {
-            em.close(); 
+            em.close();
         }
     }
 }
