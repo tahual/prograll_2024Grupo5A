@@ -62,7 +62,7 @@ class GestionarBitacoraAcceso {
     }
 
     private void crearBitacoraAcceso(Scanner scanner) {
-        System.out.print("Ingrese la acción (max 100 caracteres): ");
+        System.out.print("Ingrese la acción: ");
         String accion = scanner.nextLine();
         System.out.print("Ingrese el ID del usuario: ");
         int usuarioId = scanner.nextInt();
@@ -70,7 +70,7 @@ class GestionarBitacoraAcceso {
 
         if (usuario == null) {
             System.out.println("Usuario no encontrado. No se puede crear la bitácora.");
-            return; 
+            return;
         }
 
         BitacoraAcceso bitacora = new BitacoraAcceso();
@@ -90,7 +90,7 @@ class GestionarBitacoraAcceso {
             System.out.println("\n*** Entradas de la Bitácora de Acceso ***");
             for (BitacoraAcceso b : bitacoras) {
                 Usuarios usuario = b.getUsuarioId();
-                String usuarioNombre = usuario != null ? usuario.getNombre() : "Desconocido"; 
+                String usuarioNombre = usuario != null ? usuario.getNombre() : "Desconocido";
 
                 System.out.println("Fecha: " + b.getFechaAcceso() + ", Acción: " + b.getAccion() + ", Usuario: " + usuarioNombre);
             }
@@ -100,7 +100,7 @@ class GestionarBitacoraAcceso {
     private void actualizarBitacoraAcceso(Scanner scanner) {
         System.out.print("Ingrese el ID de la bitácora a actualizar: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); 
+        scanner.nextLine();
 
         try {
             BitacoraAcceso bitacora = bitacoraAccesoJpaController.findBitacoraAcceso(id);
